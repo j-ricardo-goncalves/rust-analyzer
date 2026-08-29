@@ -12021,3 +12021,34 @@ fn bar() {
         "#]],
     );
 }
+<<<<<<< HEAD
+
+#[test]
+fn subst_impl_trait_arg_with_const_generic() {
+    check(
+        r#"
+fn main() {
+    generic$0_tn([()], 1);
+}
+
+fn generic_tn<T, const N: usize>(_: [T; N], _: impl Sized) {}
+"#,
+        expect![[r#"
+            *generic_tn*
+
+            ```rust
+            ra_test_fixture
+            ```
+
+            ```rust
+            fn generic_tn<T, const N: usize>(_: [T; {const}], _: impl Sized)
+            ```
+
+            ---
+
+            `T` = `()`
+        "#]],
+    );
+}
+=======
+>>>>>>> 5730006f3d (Print the ABI for fn pointers (if not the default))
